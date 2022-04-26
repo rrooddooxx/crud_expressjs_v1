@@ -10,7 +10,7 @@ Stack: PostgreSQL + Express.JS + Handlebars.JS + Node.JS
   - Model: Librería pg (npm) + Node.JS + PostgreSQL 
   - View: Handlebars.JS + Bootstrap 5
   - Controller: Express.JS + Node.JS
-* Autenticación y Autorización con JSON Web Tokens (JWT)
+* Autenticación y Autorización con JSON Web Tokens (JWT) y Cookies
 * Creación de llaves secretas en SHA256 con librería crypto (npm)
 * API Restful con Express.JS
 * Subida de archivos desde formulario tipo multipart con librería express-fileupload (npm)
