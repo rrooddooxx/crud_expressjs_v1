@@ -1,4 +1,4 @@
-## CRUD APP v1 (PEHN)
+## CRUD APP v1 
 Stack: PostgreSQL + Express.JS + Handlebars.JS + Node.JS
 
 ### por Sebastián Kravetz (sebastiankravetz@icloud.com) (@wwiiddeeweb)
@@ -12,6 +12,7 @@ Stack: PostgreSQL + Express.JS + Handlebars.JS + Node.JS
   - Controller: Express.JS + Node.JS
 * Autenticación y Autorización con JSON Web Tokens (JWT)
 * Creación de llaves secretas en SHA256 con librería crypto (npm)
+* API Restful con Express.JS
  
 
 Screenshots:
