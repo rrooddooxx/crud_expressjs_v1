@@ -6,12 +6,12 @@ Stack: PostgreSQL + Express.JS + Handlebars.JS + Node.JS
 ---
 
 ## Tecnologías:
-- Arquitectura Model View Controller
--- Model: Librería pg (npm) + Node.JS + PostgreSQL
--- View: Handlebars.JS + Bootstrap 5
--- Controller: Express.JS + Node.JS
-- Autenticación y Autorización con JSON Web Tokens (JWT)
-- Creación de llaves secretas en SHA256 con librería crypto (npm)
+* Arquitectura Model View Controller
+- Model: Librería pg (npm) + Node.JS + PostgreSQL
+- View: Handlebars.JS + Bootstrap 5
+- Controller: Express.JS + Node.JS
+* Autenticación y Autorización con JSON Web Tokens (JWT)
+* Creación de llaves secretas en SHA256 con librería crypto (npm)
  
 
 Screenshots:
