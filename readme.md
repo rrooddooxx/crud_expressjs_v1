@@ -1,8 +1,20 @@
-### CRUD APP v1
+## CRUD APP v1 (PEHN)
+Stack: PostgreSQL + Express.JS + Handlebars.JS + Node.JS
 
-- por Sebastián Kravetz (sebastiankravetz@icloud.com) (@wwiiddeeweb)
+### por Sebastián Kravetz (sebastiankravetz@icloud.com) (@wwiiddeeweb)
 
 ---
+
+## Tecnologías:
+- Arquitectura Model View Controller
+-- Model: Librería pg (npm) + Node.JS + PostgreSQL
+-- View: Handlebars.JS + Bootstrap 5
+-- Controller: Express.JS + Node.JS
+- Autenticación y Autorización con JSON Web Tokens (JWT)
+- Creación de llaves secretas en SHA256 con librería crypto (npm)
+ 
+
+Screenshots:
 
 ![](https://i.ibb.co/Nx7S3bj/skate1.jpg)
 ![](https://i.ibb.co/sW54N61/skate2.jpg)
