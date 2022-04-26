@@ -13,7 +13,7 @@ Stack: PostgreSQL + Express.JS + Handlebars.JS + Node.JS
 * Autenticación y Autorización con JSON Web Tokens (JWT)
 * Creación de llaves secretas en SHA256 con librería crypto (npm)
 * API Restful con Express.JS
-* Subida de archivos desde formulario tipo multipart con librería express-fileupload (npm)
+* Subida de archivos desde formulario con datos de tipo multipart con librería express-fileupload (npm)
  
 
 Screenshots:
