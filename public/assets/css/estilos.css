@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+body {
+    background: #ffdc43;
+    color: #4a4a4a;
+    text-shadow: 0px 0px 1px black;
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    padding: 40px 100px;
+
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 4em;
+}
+
+td,
+th {
+    vertical-align: middle !important;
+    border-bottom: 1px solid black;
+}
+
+td div {
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+}
+
+.user-picture {
+    margin: auto;
+    text-align: center;
+    border-radius: 100px;
+    background-size: cover;
+    width: 120px;
+    height: 120px;
+}
+
+/* tbody tr:nth-child(1) td div {
+    background-image: url("/assets/img/tony.jpg");
+}
+
+tbody tr:nth-child(2) td div {
+    background-image: url("/assets/img/Evelien.jpg");
+}
+
+tbody tr:nth-child(3) td div {
+    background-image: url("/assets/img/Danny.jpg");
+} */
+
+input {
+    text-align: center;
+}
+
+.title {
+    text-shadow: #4a4a4a6d 2px 2px 2px;
+}
+
+.title:hover {
+    text-shadow: #d2d2d26d 2px 2px 2px;
+    cursor: pointer;
+}
+
+.title a {
+    text-decoration: none;
+    color: #4a4a4a;
+}

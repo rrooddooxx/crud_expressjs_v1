@@ -1,0 +1,50 @@
+{{> header}}
+
+
+
+<div class="py-4">
+  <h2>Administración</h2>
+ 
+
+  <table class="table w-50 m-auto">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Foto</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Años de experiencia</th>
+        <th scope="col">Especialidad</th>
+        <th scope="col">Aprobado</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#if users}}
+      {{> admin_userlist
+      users=users}}
+    {{/if}}  
+    </tbody>
+  </table>
+  {{> prefooter}}
+</div>
+
+<script>
+  const participantStateToggle = async (id, value) => {
+    const state = value.checked;
+
+    try {
+
+        const request = await axios.put("/api/v1/participants", {
+          data: {
+            id,
+            state
+          }
+        })
+    
+    $('#alertModal').modal('show')
+
+    } catch(e) {
+      console.error(e);
+    }
+  }  
+  
+</script>

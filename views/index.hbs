@@ -1,0 +1,29 @@
+{{> header}}
+
+<div class="py-4">
+  <h2>Lista de participantes</h2>
+
+  <hr />
+
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Foto</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Años de experiencia</th>
+        <th scope="col">Especialidad</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+{{#if users}}
+  {{> index_list
+  users=users}}
+{{/if}}
+
+    </tbody>
+  </table>
+{{> index_prefooter
+    isLogged=isLogged}}
+</div>

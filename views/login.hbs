@@ -1,0 +1,69 @@
+{{> header}}
+
+<div class="py-4">
+  <h2 class="py-2">Iniciar Sesión</h2>
+  <p id="error-msg"></p>
+  <hr class="w-50 m-auto" />
+
+  <form class="py-4">
+    <div class="form-group">
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          class="form-control w-50 m-auto my-2"
+          name="email"
+          type="email"
+          id="user-email"
+          minlength="1"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          class="form-control w-50 m-auto my-2"
+          name="passwd"
+          type="password"
+          id="user-password"
+          minlength="1"
+          required
+        />
+      </div>
+    </div>
+    <button class="btn btn-success my-3" id="login-button">Ingresar</button>
+    <p>¿Aún no tienes cuenta? <a href="/registro">Regístrate</a></p>
+  </form>
+</div>
+
+<script>
+  const loginButton = document.getElementById("login-button");
+  const loginAuth = async (email, password) => {
+      const errorMsg = document.getElementById("error-msg")
+      const payload = { email, password }
+      const { data } = await axios.post("/api/v1/auth", payload)
+      if(data.error){
+        console.error(`Error: ${data.message} | CODE: ${data.error}`)
+        errorMsg.innerText = "Credenciales Inválidas. Intente nuevamente"
+      } else {
+        document.cookie = `token=${data.token}`
+        errorMsg.innerText = "";
+        location.href = "/perfil";
+      }
+      
+  
+  }
+
+  loginButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const userEmail = document.getElementById("user-email").value;
+    const userPassword = document.getElementById("user-password").value;
+    const errorMsg = document.getElementById("error-msg")
+
+    if(!userEmail || userEmail.trim() == "" || !userPassword || userPassword.trim() == "") {
+      errorMsg.innerText = "Error en los campos, revise e intente nuevamente."
+    } else {
+        loginAuth(userEmail, userPassword)
+    }
+  })
+  
+</script>

@@ -1,0 +1,152 @@
+{{> header}}
+
+<div class="py-4">
+  <h2>Registro</h2>
+  <hr class="w-50 m-auto mt-3" />
+
+<p class="mt-3" id="alert-msg"></p>
+  <form class="py-4 mb-2" action="/api/v1/participants" method="POST" enctype="multipart/form-data" >
+    <div class="form-group row w-50 m-auto pb-2">
+      <div class="form-group col-12 col-sm-6 py-2">
+        <label>Email &nbsp;<span class="text-danger" style="text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.895);" id="email-warning"></span></label>
+        <input class="form-control m-auto" type="email" placeholder="tuemail@aqui.com" name="email" id="user-email" required="required" autocomplete="email" />
+      </div>
+      <div class="form-group col-12 col-sm-6 py-2">
+        <label>Nombre &nbsp;<span class="text-danger" style="text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.895);" id="name-warning"></span></label>
+        <input class="form-control m-auto" type="text" placeholder="Juana Pérez" name="userName" id="user-name" minlength="1" autocomplete="name"  required="required"/>
+      </div>
+      <div class="form-group col-12 col-sm-6 py-2">
+        <label>Password</label>
+        <input class="form-control m-auto" id="pwd1" type="password" placeholder="Ingresa Contraseña" required="required" autocomplete="new-password"  />
+      </div>
+      <div class="form-group col-12 col-sm-6 py-2">
+        <label>Repita la password</label>
+        <input class="form-control m-auto" id="pwd2"  type="password" placeholder="Repita Contraseña" name="password" required="required"/>
+      </div>
+      <div class="form-group col-12 col-sm-6 py-2">
+        <label>Años de experiencia &nbsp;<span class="text-danger" style="text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.895);" id="experience-warning"></span></label>
+        <input
+          class="form-control m-auto"
+          placeholder="Ingrese número de años"
+          name="expYears"
+          type="number" id="user-experience"
+          minlength="1" min="0" required="required"/>
+      </div>
+      <div class="form-group col-12 col-sm-6 py-2">
+        <label>Especialidad &nbsp;<span class="text-danger" style="text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.895);" id="specialty-warning"></span></label>
+        <input class="form-control m-auto" type="text" placeholder="Tu especialidad" name="specialty" id="user-specialty" minlength="1" required="required"/>
+      </div>
+      <div class="form-group col-6 col-sm-6 py-4 overflow-scroll">
+        <label>Foto de perfil</label><br />
+        <input type="file" name="userPicture" id="user-picture" accept="image/png, image/jpeg, .jpg" style="text-overflow: ellipsis" required="required"/>
+
+      </div>
+      <div class="form-group col-6 col-sm-6 py-4">
+        <label>¿Conceder permisos de Administración?</label><br />
+        <input type="checkbox" name="isAdmin" id="isadmin"/>
+
+      </div>
+
+    </div>
+    <hr class="w-50 m-auto mb-4" />
+    <button class="btn btn-info mb-3" id="user-submit">Registrarme</button>
+    <p><a href="/login"> Iniciar sesión</a></p>
+  </form>
+</div>
+
+
+<script>
+// global values
+const pwd1 = document.getElementById("pwd1");
+const pwd2 = document.getElementById("pwd2");
+const alertMsg = document.getElementById("alert-msg")
+const submitButton = document.getElementById("user-submit")
+
+
+// uppercase function
+
+function firstLetterToUppercase(e) {
+        arrString = e.target.value.split(" ");
+        arrString = arrString.map((e) => e[0].toUpperCase() + e.slice(1))
+        e.target.value = arrString.join(" ")
+      }
+
+
+// name check
+const userName = document.getElementById("user-name")
+userName.addEventListener("input", firstLetterToUppercase)
+
+// password check
+
+function checkPasswdMatch() {
+ if (pwd1.value != pwd2.value) {
+  pwd2.setCustomValidity("Las contraseñas no coinciden");
+  pwd2.reportValidity();
+  alertMsg.innerText = "Atención! Las contraseñas no coinciden"
+
+ } else {
+   pwd2.setCustomValidity("")
+   alertMsg.innerText = "";
+ }
+}
+
+pwd2.addEventListener('input', checkPasswdMatch);
+
+
+
+// email check
+const userEmail = document.getElementById("user-email");
+
+userEmail.addEventListener("input", (e) => {
+  if (userEmail.validity.typeMismatch) {
+    userEmail.setCustomValidity("Por favor ingresar un email correcto");
+    userEmail.reportValidity();
+  } else {
+    userEmail.setCustomValidity("");
+  }
+})
+
+// picture file check
+const userPicture = document.getElementById("user-picture")
+
+userPicture.addEventListener("input", (e) => {
+  if (userPicture.validity.valueMissing) {
+    userPicture.setCustomValidity("Por favor sube tu foto");
+    userPicture.reportValidity();
+  } else {
+    userPicture.setCustomValidity("");
+  }
+})
+
+// years of experience check
+
+const userExperience = document.getElementById("user-experience");
+
+userExperience.addEventListener("input", (e) => {
+  console.log(e.target.type)
+  if (e.target.value < 0 || e.target.value == undefined || e.target.value == "" || e.target.value == " ") {
+    userExperience.setCustomValidity("Ingrese un número válido");
+    userExperience.reportValidity();
+  } else {
+    userExperience.setCustomValidity("");
+  }
+})
+
+// specialty check
+
+const userSpecialty = document.getElementById("user-specialty")
+
+userSpecialty.addEventListener("input", firstLetterToUppercase)
+
+userSpecialty.addEventListener("input", (e) => {
+  if (!e.target.value || e.target.value == "" || e.target.value == " " || e.target.value.trim() == "") {
+  userSpecialty.setCustomValidity("Ingrese un valor correcto")
+  userSpecialty.reportValidity();
+} else {
+  userSpecialty.setCustomValidity("");
+}
+}) 
+
+
+
+</script>

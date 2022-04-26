@@ -1,0 +1,16 @@
+{{#each users}}
+  <tr>
+    <th scope="row">{{@index}}</th>
+    <td>
+      <div style="background-image: url('{{this.foto}}')"></div>
+    </td>
+    <td>{{this.nombre}}</td>
+    <td>{{this.anios_experiencia}}</td>
+    <td>{{this.especialidad}}</td>
+    {{#if this.estado}}
+      <td class="text-success font-weight-bold">Aprobado</td>
+    {{else}}
+      <td class="text-danger font-weight-bold">En Revisión</td>
+    {{/if}}
+  </tr>
+{{/each}}

@@ -1,0 +1,15 @@
+{{#if isLogged}}
+  <div class="mt-4 pt-2">
+    <a href="/logout">Cerrar Sesión</a>
+    |
+    <a href="/perfil">Editar Mi Perfil</a>
+    |
+    <a href="/admin">Admin Panel</a>
+  </div>
+{{else}}
+  <div class="mt-4 pt-2">
+    <a href="/login">Iniciar Sesión</a>
+    |
+    <a href="/registro">Registrarme</a>
+  </div>
+{{/if}}

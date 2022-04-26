@@ -1,0 +1,135 @@
+{{> header}}
+
+<div class="py-4">
+  <h2 class="pb-4">Datos del perfil</h2>
+  <hr class="w-50 m-auto" />
+
+  {{#if user}}
+  <div class="user-picture my-4" style="background-image: url({{user.foto}})"></div>
+  <h4 class="my-2">{{user.nombre}}</h4>
+  {{#if user.es_admin}}<h5 class="text-success text-decoration-underline">Usuario Administrador</h5>
+  {{else}}
+  <h5 class="text-success text-decoration-underline">Usuario Normal</h5>
+  {{/if}}
+  <form class="pt-1" id="usereditForm">
+    
+    <div class="form-group row w-50 m-auto py-4 mb-2">
+      
+      <div class="form-group col-12 col-sm-6">
+        <label>E-Mail</label>
+        <input
+        type="email"
+          class="form-control m-auto"
+          readonly="true"
+          value="{{user.email}}"
+          id="useremail"
+          name="useremail"
+          >
+      </div>
+      <div class="form-group col-12 col-sm-6">
+        <label>Nombre</label>
+        <input type="text" class="form-control m-auto" value="{{user.nombre}}" id="usernombre" name="usernombre">
+      </div>
+      <div class="form-group col-12 col-sm-6">
+        <label>Password</label>
+        <input type="password" class="form-control m-auto" value="{{user.password}}">
+      </div>
+      <div class="form-group col-12 col-sm-6">
+        <label>Repita la password</label>
+        <input type="password" class="form-control m-auto" value="{{user.password}}" id="userpassword" name="userpassword">
+      </div>
+      <div class="form-group col-12 col-sm-6">
+        <label>Años de experiencia</label>
+        <input type="number" class="form-control m-auto" value="{{user.anios_experiencia}}" min="0"  id="userexperiencia" name="userexperiencia">
+      </div>
+      <div class="form-group col-12 col-sm-6">
+        <label>Especialidad</label>
+        <input type="text" class="form-control m-auto" value="{{user.especialidad}}"  id="userespecialidad" name="userespecialidad">
+      </div>
+    </div></form>
+
+  {{/if}}
+
+    <hr class="w-50 m-auto" />
+    <div class="my-4">
+      <button class="btn btn-primary mx-2" id="updatebutton">Actualizar</button>
+      <button class="btn btn-danger mx-2" id="deletebutton" data-id="{{user.id}}">Eliminar cuenta</button>
+      <button class="btn btn-secondary mx-2" onclick="window.location.href='/'">Volver al Inicio</button>
+      <input type="number" value="{{user.id}}" id="userid" name="userid" hidden>
+    </div>
+    <div>
+
+    </div>
+
+{{> modal
+msg="Usuario eliminado correctamente, Serás redirigido a la página principal."}}
+</div>
+
+<script>
+
+  const especialidadField = document.getElementById("userespecialidad");
+  const nombreField = document.getElementById("usernombre");
+  const updateButton = document.getElementById("updatebutton");
+  const deleteButton = document.getElementById("deletebutton")
+
+  function firstLetterToUppercase(e) {
+        arrString = e.target.value.split(" ");
+        arrString = arrString.map((e) => e[0].toUpperCase() + e.slice(1))
+        e.target.value = arrString.join(" ")
+      }
+
+  especialidadField.addEventListener("input", firstLetterToUppercase)
+  nombreField.addEventListener("input", firstLetterToUppercase)
+  updateButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const nombre = document.getElementById("usernombre").value
+    const email = document.getElementById("useremail").value
+    const password = document.getElementById("userpassword").value
+    const experiencia = document.getElementById("userexperiencia").value
+    const especialidad = document.getElementById("userespecialidad").value
+    const id = document.getElementById("userid").value
+    const payload = {
+      id,
+      email,
+      nombre,
+      password,
+      experiencia,
+      especialidad
+    }
+    
+    const apiPutUrl = `/api/v1/participants/${id}`;
+
+    try {
+      axios.put(apiPutUrl, payload)
+      .then(function (response) {
+        window.location.href = "/perfil";
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    } catch(e) {
+      console.error(e);
+      alert(e)
+    }
+
+  });
+  deleteButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const { id } = e.target.dataset
+    const email = document.getElementById("useremail").value
+    const payload = { id, email } 
+    console.log(payload)
+
+    const apiDeleteUrl = `/api/v1/participants/${id}`;
+    
+    axios.delete(apiDeleteUrl, { data: payload }).then((response) => {
+      console.log(response)
+      $('#alertModal').modal('show')
+      setTimeout(() => {
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.href = "/"
+      }, 2000)
+  })
+});
+
+</script>

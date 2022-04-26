@@ -1,0 +1,13 @@
+{{#each users}}
+  <tr>
+        <th scope="row">{{@index}}</th>
+        <td>
+          <div style="background-image: url('{{this.foto}}')"></div>
+        </td>
+        <td>{{this.nombre}}</td>
+        <td>{{this.anios_experiencia}}</td>
+        <td>{{this.especialidad}}</td>
+        <td><input type="checkbox" id="state-checkbox" {{#if this.estado}}checked{{/if}} onclick="participantStateToggle({{this.id}}, this)"/></td>
+      </tr>
+        {{> admin_modal}}
+  {{/each}}

@@ -1,0 +1,16 @@
+{{> header}}
+
+<div class="py-4">
+  <hr class="w-50 m-auto my-4"  />
+
+  <h3>Has cerrado sesión exitosamente. ¡Nos Vemos!</h3>
+  <button class="btn btn-secondary mx-2 my-4" onclick="window.location.href='/'">Volver al Inicio</button>
+    
+</div>
+
+<script>
+  (function killCookie(){
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  })();
+  
+</script>
