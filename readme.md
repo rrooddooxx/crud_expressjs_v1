@@ -1,7 +1,7 @@
 ## CRUD APP v1 
-Stack: PostgreSQL + Express.JS + Handlebars.JS + Node.JS
 
-### por Sebastián Kravetz (sebastiankravetz@icloud.com) (@wwiiddeeweb)
+### Stack: PostgreSQL + Express.JS + Handlebars.JS + Node.JS
+### Desarrollo por Sebastián Kravetz (sebastiankravetz@icloud.com)
 
 ---
 
