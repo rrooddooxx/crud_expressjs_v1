@@ -34,15 +34,23 @@ router.use("/", (req, res, next) => {
 
 // index
 router.get("/", async (req, res) => {
-  const getUsersFromApi = await getParticipants();
-  const sortedArr = getUsersFromApi.sort((a, b) => a.id - b.id);
-  const isLogged = res.locals.isLogged;
+  try {
+    const getUsersFromApi = await getParticipants();
+    const sortedArr = getUsersFromApi.sort((a, b) => a.id - b.id);
+    const isLogged = res.locals.isLogged;
 
-  res.render("index", {
-    title: "SkatePark APP | Dev: Sebastián Leiva (@wwiiddeewweebb)",
-    users: sortedArr,
-    isLogged,
-  });
+    res.render("index", {
+      title: "SkatePark APP | Dev: Sebastián Leiva (@wwiiddeewweebb)",
+      users: sortedArr,
+      isLogged,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      message: "Error fatal en el servidor (probablemente la conexión a la DB)",
+      code: 500,
+    });
+  }
 });
 
 // check auth admin middleware
